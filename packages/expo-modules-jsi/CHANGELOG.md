@@ -126,6 +126,7 @@ _This version does not introduce any user-facing changes._
 - [iOS] Preserve the `code` on the JavaScript error when an async function rejects with a `JavaScriptThrowable` (e.g. an `Exception`), instead of stringifying it and dropping the `code` — mirroring the synchronous throw path. ([#47259](https://github.com/expo/expo/pull/47259) by [@wwdrew](https://github.com/wwdrew))
 - [iOS] Return `NSNull` instead of trapping in the deprecated `JavaScriptValue.getAny()` when it encounters a unrepresentable value. ([#47381](https://github.com/expo/expo/pull/47381) by [@alanjhughes](https://github.com/alanjhughes))
 - [iOS] Fixed the `Build ExpoModulesJSI xcframework` build phase intermittently failing on Xcode 27 when clearing stale build state raced Xcode's background indexer writing into the SwiftPM index store. ([#47914](https://github.com/expo/expo/pull/47914) by [@tsapeta](https://github.com/tsapeta))
+- [iOS] Keep asynchronous `JavaScriptRuntime.schedule` and `execute` tasks on the runtime's JavaScript thread after suspension points by using a runtime-specific task executor preference on iOS 18 and newer. Returning from an actor that has an executor of its own (the main actor, for instance) still resumes on that actor's thread until the next suspension point. ([#47900](https://github.com/expo/expo/pull/47900) by [@tsapeta](https://github.com/tsapeta))
 
 ### 💡 Others
 
